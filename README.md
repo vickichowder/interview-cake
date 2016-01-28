@@ -1,2 +1,3 @@
-# interview-cake
+# Interview Cake
 Weekly code practices
+
