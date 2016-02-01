@@ -1,4 +1,4 @@
 # Word Cloud
-A dictionary storing the number of times a word (case insensitive) appears in data (stored as a list of strings). Punctuation and spaces are not included.
+A dictionary storing the number of times a word appears in data (stored as a list of strings). Punctuation and spaces are stripped.
 
-Problems occur when we are dealing with proper nouns - names, and capitalization of words at the beginning of the sentence. To keep working on this. 
+Dictionary will store the number of counts of the word with capitalized first letter and lowercased first letter. Another run through the dictionary required to determine which count is larger.

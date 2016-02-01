@@ -1,26 +1,52 @@
-lines = ['After beating the eggs, Dana read the next step:','Add milk and eggs, then add flour and sugar.']
+import string, re
 
 class cloud:
     def __init__(self, data):
         self.data = data
         self.cloud = {}
         self.fluffy()
-        
+        self.compress()
+
     def fluffy(self):
         for item in self.data:
-            self.add(item.split(' '))
-    
+            item = self.clean(item)
+            self.add(filter(None, re.split("[, !?:.]+", item)))
+
     def add(self, item):
         for word in item:
-        	word = self.clean(word)
-        	if word in self.cloud:
-        		self.cloud[word] += 1
-        	else:
-        		self.cloud[word] = 1
-    
-    def clean(self, word):
-    	return word.lower().replace(',', '').replace('.', '').replace(':', '').replace('!', '').replace(';', '').replace('?', '')
+            if word.lower() not in self.cloud:
+                self.cloud[word.lower()] = [0,0]
 
-clouddata = cloud(lines)
-print(clouddata.cloud)
-            
+            self.increment(word)
+
+    def compress(self):
+        tempCloud = {}
+        for key, value in self.cloud.iteritems():
+            if value[0] < value[1]:
+                tempCloud[key.capitalize()] = value[0] + value[1]
+            else:
+                tempCloud[key] = value[0] + value[1]
+
+        self.cloud = tempCloud
+
+
+    def clean(self, s):
+        remove = ',\?!()&*$/'
+    	for punctuation in remove:
+            s = s.translate(None, punctuation)
+        return s
+
+    def increment(self, word):
+        if word.islower():
+            self.cloud[word.lower()][0] += 1
+        else:
+            self.cloud[word.lower()][1] += 1
+
+def execute():
+    lines = [ 'We came, we saw, we conquered...then we ate\
+        Bill\'s (Mille-Feuille) cake.']
+    cloudData = cloud(lines)
+
+    print(cloudData.cloud)
+
+execute()
