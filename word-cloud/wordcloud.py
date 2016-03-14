@@ -9,8 +9,7 @@ class cloud:
 
     def fluffy(self):
         for item in self.data:
-            item = self.clean(item)
-            self.add(filter(None, re.split("[, !?:.]+", item)))
+            self.add(filter(None, re.split("[, !?:.\?!()&*$/\"#@^%~`]+", item)))
 
     def add(self, item):
         for word in item:
@@ -29,13 +28,6 @@ class cloud:
 
         self.cloud = tempCloud
 
-
-    def clean(self, s):
-        remove = ',\?!()&*$/'
-    	for punctuation in remove:
-            s = s.translate(None, punctuation)
-        return s
-
     def increment(self, word):
         if word.islower():
             self.cloud[word.lower()][0] += 1
@@ -44,7 +36,7 @@ class cloud:
 
 def execute():
     lines = [ 'We came, we saw, we conquered...then we ate\
-        Bill\'s (Mille-Feuille) cake.']
+        Bill\'s (Mille-Feuille) "CAKE" CAKE.']
     cloudData = cloud(lines)
 
     print(cloudData.cloud)
