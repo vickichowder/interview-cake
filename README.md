@@ -1,3 +1,4 @@
 # Interview Cake
-Weekly code practices
+Apparently I love any type of cake...
 
+Weekly code practices from [Interview Cake](https://www.interviewcake.com)!
