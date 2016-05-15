@@ -1,8 +1,11 @@
 def max_duffel_bag_value(cakes, capacity):
     cakes = [(weight, value) for (weight, value) in cakes if weight < capacity]
-    sorted(cakes, key=lambda cake: cake[1])
+    print([value/weight for (weight, value) in cakes])
+    cakes = sorted(cakes, key=lambda cake: (cake[1]/cake[0]), reverse=True)
+    print(cakes)
+    print([value/weight for (weight, value) in cakes])
 
-    print('Number of cakes eligible for heist: {}'.format(len(cakes)))
+    # print('Number of cakes eligible for heist: {}'.format(len(cakes)))
     remaining = capacity
     stole = 0
     # Grab as many most expensive ones as possible
